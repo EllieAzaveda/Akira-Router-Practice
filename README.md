@@ -30,7 +30,7 @@
      />
     
    4. Right now we're using a handleClick method to update state in App, which we then use to conditionally render our Astronomy component. Let's use router here instead. Let's import Link from `react-router-dom` and change our button to a Link. Our Link will have a to attribute (just like path and element for Route) and we will set a new path for our daily fact display (you can name this whatever you want!). 
-  * This Link is basically acting as a method, saying when this element is clicked, change the URL path to `whatever-you-named-it`.
+  * Link is basically acting as a method, saying when this element is clicked, change the URL path to `whatever-you-named-it`.
   5. Now that we have converted our button to a Link, we need to inform our Astronomy Component that it also has a job to do! We are going to wrap our entire Astronomy Component with a <NavLink> (don't forget to import and wrap the entire card but staying inside the Fragment). Our NavLink will also have a to attribute that should match the path that you named in step 4.
   6. Now let's loop back to our App Component. We have to tell App _when_ to render our Astronomy Component. When we click our Link in the `MainPage` Component we will be sent to a different URL, which we gave a "path to" but we now need to add that Route to our Routes list. Just like we rendered the `MainPage` in step 3, we will add a `<Route>` for our `<Astronomy />` Component (don't forget to add the path which must match the NavLink and any props that need to be passed).
   7. You should now be able to navigate the app exactly like before, but the URL will match the "pages" when navigating!
