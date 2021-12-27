@@ -1,71 +1,41 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # Akira-Router-Practice
+
+## Goal
+1. Learn to implement React Router 
+
+### Getting Started
+1. Fork and clone this repo
+2. Run `npm i`
+3. Get familiar with the code and the actual app (`npm start`)
+4. Run `npm i react-router-dom`
+5. In `index.js` add your import and wrap your <App/> tag with <BrowserRouter>:
+  - `import { BrowserRouter } from 'react-router-dom';`
+  - `ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>,
+      document.getElementById('root')
+    );`
+  
+### Let's add it to our app!
+  1. With the updates to Router V6, we now need to wrap any of our `<Route>` tags in one container called `<Routes>`
+  2. We need to make sure we import and destructure what we'd like to use from react-router-dom: `import { Route, Routes } from 'react-router-dom';`
+  3. Within our `<Routes></Routes>` tags, we can now add our actual routes. Within the Route tag, we need to define the path and the element. The default/landing page will just be "/" and the element will just be whatever component you'd like to render including any props you'd like to pass (if any). Ex: 
+  
+    <Route path="/" element={
+        <MainPage />
+       }
+     />
+    
+   4. Right now we're using a handleClick method to update state in App, which we then use to conditionally render our Astronomy component. Let's use router here instead. Let's import Link from `react-router-dom` and change our button to a Link. Our Link will have a to attribute (just like path and element for Route) and we will set a new path for our daily fact display (you can name this whatever you want!). 
+  * This Link is basically acting as a method, saying when this element is clicked, change the URL path to `whatever-you-named-it`.
+  5. Now that we have converted our button to a Link, we need to inform our Astronomy Component that it also has a job to do! We are going to wrap our entire Astronomy Component with a <NavLink> (don't forget to import and wrap the entire card but staying inside the Fragment). Our NavLink will also have a to attribute that should match the path that you named in step 4.
+  6. Now let's loop back to our App Component. We have to tell App _when_ to render our Astronomy Component. When we click our Link in the `MainPage` Component we will be sent to a different URL, which we gave a "path to" but we now need to add that Route to our Routes list. Just like we rendered the `MainPage` in step 3, we will add a `<Route>` for our `<Astronomy />` Component (don't forget to add the path which must match the NavLink and any props that need to be passed).
+  7. You should now be able to navigate the app exactly like before, but the URL will match the "pages" when navigating!
+  
+  
+  ### Bonus
+  1. As of now, you can only navigate to the daily fact display page, but to get back to the home page you must delete the URL path or hit the back button. Annoying! Let's add a way (using React Router not conditional rendering) to get back to the landing page from the daily fact page, so we can navigate more easily!
+  
